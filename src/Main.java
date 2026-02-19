@@ -1,6 +1,28 @@
 
     import java.util.Scanner;
     public class Main {
+
+        public static double calc(double a,double b, char op){
+            return switch(op){
+                case '+'-> a+b;
+                case '-' -> a-b;
+                case '*' -> a*b;
+                case '/' -> {
+                    if(b==0){
+                        System.out.print("infinity");
+                        yield 0;
+                    }else{
+                        yield a/b;
+                    }
+                }
+                default -> {
+                    System.out.print("Invalid op");
+                    yield 0;
+                }
+
+            };
+        }
+
         public static void main(String[] args) {
 
             Scanner sc = new Scanner(System.in);
@@ -8,58 +30,33 @@
             System.out.println("===== Simple Java Calculator =====");
 
             // Taking input numbers
-            System.out.print("Enter first number: ");
-            double num1 = sc.nextDouble();
+            while(true) {
 
-            System.out.print("Enter second number: ");
-            double num2 = sc.nextDouble();
+                System.out.print("Enter an operator(+,-,*,/) or 'q/Q' to exit:");
+                char op = sc.next().charAt(0);
 
-            System.out.println("hello file is end!");
+                if(op=='q' || op=='Q'){
+                    System.out.print("exiting");
+                    break;
+                }
 
-            // Choosing operation
-            System.out.println("\nChoose Operation:");
-            System.out.println("1. Addition (+)");
-            System.out.println("2. Subtraction (-)");
-            System.out.println("3. Multiplication (*)");
-            System.out.println("4. Division (/)");
+                System.out.print("Enter first number: ");
+                double a = sc.nextDouble();
 
-            System.out.print("Enter choice (1-4): ");
-            int choice = sc.nextInt();
 
-            double result;
 
-            // Performing calculation
-            switch (choice) {
-                case 1:
-                    result = num1 + num2;
+                System.out.print("Enter second number: ");
+                double b = sc.nextDouble();
+
+                double result = calc(a, b, op);
+
+
                     System.out.println("Result = " + result);
-                    break;
 
-                case 2:
-                    result = num1 - num2;
-                    System.out.println("Result = " + result);
-                    break;
 
-                case 3:
-                    result = num1 * num2;
-                    System.out.println("Result = " + result);
-                    break;
-
-                case 4:
-                    if (num2 != 0) {
-                        result = num1 / num2;
-                        System.out.println("Result = " + result);
-                    } else {
-                        System.out.println("Error! Division by zero is not allowed.");
-                    }
-                    break;
-
-                default:
-                    System.out.println("Invalid Choice!");
             }
-
             sc.close();
         }
-    }
+    };
 
 
