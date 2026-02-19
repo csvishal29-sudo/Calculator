@@ -14,6 +14,8 @@
             System.out.print("Enter second number: ");
             double num2 = sc.nextDouble();
 
+            System.out.println("hello file is end!");
+
             // Choosing operation
             System.out.println("\nChoose Operation:");
             System.out.println("1. Addition (+)");
